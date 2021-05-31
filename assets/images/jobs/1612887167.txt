@@ -1,0 +1,132 @@
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop:
+$ mkdir test
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop:
+$ git init
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop:
+$ cd test
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)->make a file name "hh" type "php"     update : git clone https://github.com/git/git ,  for windows:git update-git-for-windows
+$ touch hh.php
+User@DESKTOP-0N1V79U MINGW64 ~/desktop/test (master)
+$ git add hh.php
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)  {{ git add .(add all file) , git add "file name"   }}
+$ git add .
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git commit -m "first commit"
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git commit -m "first commit"
+[master (root-commit) 9efc20c] first commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hh.php
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ touch welcome.php
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ gedit welcome.php
+bash: gedit: command not found
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git add .
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   welcome.php
+
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git config --global user.name "RathanaThy"
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git config --global user.email "rathanathy02@gmail.com"
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git config user.name "RathanaThy"
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git config user.email "rathanathy02@gmail.com"
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git branch
+* master
+
+==create new branch name "polo"
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git branch polo
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git branch
+* master
+  polo
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git checkout polo
+Switched to branch 'polo'
+A       welcome.php
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (polo)
+$ ls
+dd/  hh.php  welcome.php
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (polo)
+$ git add .
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (polo)
+$ git commit -m "polo commit"
+[polo 2f84d5e] polo commit
+ 1 file changed, 3 insertions(+)
+ create mode 100644 welcome.php
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (polo)
+$ git checkout master
+Switched to branch 'master'
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git merge polo
+Updating 9efc20c..2f84d5e
+Fast-forward
+ welcome.php | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 welcome.php
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git branch -d polo
+Deleted branch polo (was 2f84d5e).
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (master)
+$ git checkout -b tmenh
+Switched to a new branch 'tmenh'
+
+==go to edit file welcome
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (tmenh)
+$ git commit
+hint: Waiting for your editor to close the file... unix2dos: converting file C:/Users/User/Desktop/test/.git/COMMIT_EDITMSG to DOS format...
+dos2unix: converting file C:/Users/User/Desktop/test/.git/COMMIT_EDITMSG to Unix format...
+Aborting commit due to empty commit message.
+
+User@DESKTOP-0N1V79U MINGW64 ~/Desktop/test (tmenh)
+$ git commit -m "New"
+[tmenh 140b1bf] New
+ 1 file changed, 1 insertion(+)
+
+
+
+
+
+
+
+
+
+
+
+
