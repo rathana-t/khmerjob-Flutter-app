@@ -1,16 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:khmerjob_project/main.dart';
 import 'package:khmerjob_project/models/job_model.dart';
-import 'package:khmerjob_project/pages/login_page.dart';
+import 'package:khmerjob_project/pages/home_page.dart';
 import 'package:khmerjob_project/pages/profile_page.dart';
 import 'package:khmerjob_project/repo/job_repo.dart';
 
-import 'home_page.dart';
 
 class BrowseJob extends StatefulWidget {
-
-  final category1;
-  BrowseJob({this.category1});
+  String category1;
+  BrowseJob(this.category1);
 
   @override
   _BrowseJobState createState() => _BrowseJobState();
@@ -20,12 +19,16 @@ class _BrowseJobState extends State<BrowseJob> {
   double _widthOfScreen;
   Future<Job> _jobData;
 
+  // String category1;
+  // _BrowseJobState(this.category1);
+  // BrowseJob({this.category1});
+  // final String gg = category1;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _jobData = getJobByCategory('ds');
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _jobData = getJobByCategory();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +94,234 @@ class _BrowseJobState extends State<BrowseJob> {
         )
     );
   }
+
   get _buildBody{
+    return ListView(
+      children: [
+        _buildJobFutureAPI,
+      ],
+    );
+  }
+  get _buildJobFutureAPI {
     return Container(
-      child: Text("dsds"),
+      child: FutureBuilder<Job>(
+        future: _jobData,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Error: ${snapshot.error}"),
+            );
+          }
+          if (snapshot.hasData) {
+            return _buildJobs(snapshot.data.jobs);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 
+  _buildJobs(List<JobElement> itemList) {
+    return Container(
+      alignment: Alignment.center,
+      // color: Colors.lightBlueAccent,
+      padding: EdgeInsets.all(15),
+      margin: EdgeInsets.only(top: 15),
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 5, bottom: 15),
+            alignment: Alignment.center,
+            child: Text(
+              'Latest Jobs',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Container(
+            width: _widthOfScreen,
+            child: ListView.builder(
+              // GridView.builder
+              physics: NeverScrollableScrollPhysics(),
+              // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //   crossAxisCount: 1,
+              // mainAxisSpacing: 10,
+              // crossAxisSpacing: 10,
+              // ),
+              itemCount: itemList.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return _buildItemJob(itemList[index],index);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
+// img, title, catogory, location, type, salary
+  _buildItemJob(JobElement item,index) {
+    return InkWell(
+      onTap: () {
+        // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail() ));
+      },
+      child: Container(
+        color: index.isEven ? Colors.lightBlueAccent.withOpacity(0.1) : Colors.white54.withOpacity(0.1),
+
+        // width: 150,  useless
+        height: 150,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              color: Colors.blueAccent,
+              padding: EdgeInsets.all(2),
+              width: 150,
+              height: 130,
+              margin: EdgeInsets.only(right: 10),
+              child: Image.asset(
+                'assets/images/jobs/' + item.image,
+                fit: BoxFit.cover,
+              ),
+              // child: Image.asset('assets/images/jobs/jobImage/' + item.image),
+            ),
+            Expanded(
+              child: Container(
+                // padding: EdgeInsets.all(6),
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Container(
+                      // color: Colors.yellowAccent,
+                      margin: EdgeInsets.only(bottom: 5),
+                      alignment: Alignment.topLeft,
+                      child: RichText(
+                        overflow: TextOverflow.ellipsis,
+                        // strutStyle: StrutStyle(fontSize:12.0),
+                        text: TextSpan(
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 17,
+                          ),
+                          text: item.title,
+                        ),
+                      ),
+                      // decoration: BoxDecoration(
+                      // border:Bor
+                      // color: Colors.blue,
+
+                      // ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom:4),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.category,
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              // strutStyle: StrutStyle(fontSize:12.0),
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16,
+                                ),
+                                text: item.category,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom:4),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              // strutStyle: StrutStyle(fontSize:12.0),
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16,
+                                ),
+                                text: item.location,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.category_outlined,
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              // strutStyle: StrutStyle(fontSize:12.0),
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16,
+                                ),
+                                text: item.typeJob.toString().substring(8),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      // width: 100,
+                      alignment: Alignment.topRight,
+                      margin: EdgeInsets.only(top:6,bottom:6),
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 30,
+                        width: 100,
+                        // strutStyle: StrutStyle(fontSize:12.0),
+                        child: Text("\$ " + item.salary,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                        ),
+                      ),
+
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
 }

@@ -2,10 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:khmerjob_project/models/user_model.dart';
 
-const IOSimulator = "localhost";
-const AndroidEmulator = "10.0.2.2";
-const LivePhone = "190.168.8.101"; // dak ip address computer yg
+// when connect with real device must use the same network
 
+const IOSimulator = "localhost";
+const AndroidEmulator = "10.0.3.2";
+const LivePhone = "190.168.8.101"; // dak ip address computer yg but this is is a sample ip address of teacher
+// cmd -> ipconfig -> ipv4 = 192.168.8.113
+
+// link YouTube   https://www.youtube.com/watch?v=tmyR5gP-0PQ
 
 Future<User> getUser(String email, String password)async{
   String address = AndroidEmulator;

@@ -417,7 +417,7 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => BrowseJob(category1: catego)));
+            builder: (context) => BrowseJob(catego)));
       },
       child: Container(
         // alignment: Alignment.center,
@@ -486,6 +486,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
+            width: _widthOfScreen,
             child: ListView.builder(
               // GridView.builder
               physics: NeverScrollableScrollPhysics(),
@@ -515,7 +516,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         color: index.isEven ? Colors.lightBlueAccent.withOpacity(0.1) : Colors.white54.withOpacity(0.1),
 
-        width: 150,
+        // width: 150,  useless
         height: 150,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -523,7 +524,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Container(
               color: Colors.blueAccent,
-              padding: EdgeInsets.all(3),
+              padding: EdgeInsets.all(2),
               width: 150,
               height: 130,
               margin: EdgeInsets.only(right: 10),
@@ -535,11 +536,13 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(6),
+                // padding: EdgeInsets.all(6),
                 alignment: Alignment.center,
                 child: Column(
                   children: [
                     Container(
+                      // color: Colors.yellowAccent,
+                      margin: EdgeInsets.only(bottom: 5),
                       alignment: Alignment.topLeft,
                       child: RichText(
                         overflow: TextOverflow.ellipsis,
@@ -552,31 +555,15 @@ class _HomePageState extends State<HomePage> {
                           text: item.title,
                         ),
                       ),
-                    ),
-                    Container(
-                      // width: 100,
-                      alignment: Alignment.topRight,
-                      // margin: EdgeInsets.only(top:6,bottom:6),
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 30,
-                        width: 100,
-                        // strutStyle: StrutStyle(fontSize:12.0),
-                        child: Text("\$ " + item.salary,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                        ),
-                      ),
+                      // decoration: BoxDecoration(
+                        // border:Bor
+                        // color: Colors.blue,
 
+                      // ),
                     ),
+
                     Container(
-                      margin: EdgeInsets.only(bottom:6),
+                      margin: EdgeInsets.only(bottom:4),
                       child: Row(
                         children: [
                           Icon(
@@ -584,6 +571,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.blue,
                           ),
                           Container(
+                            margin: EdgeInsets.only(left: 5),
                             child: RichText(
                               overflow: TextOverflow.ellipsis,
                               // strutStyle: StrutStyle(fontSize:12.0),
@@ -601,7 +589,7 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(bottom:6),
+                      margin: EdgeInsets.only(bottom:4),
                       child: Row(
                         children: [
                           Icon(
@@ -609,7 +597,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.blue,
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: EdgeInsets.only(left: 5),
                             child: RichText(
                               overflow: TextOverflow.ellipsis,
                               // strutStyle: StrutStyle(fontSize:12.0),
@@ -633,7 +621,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.blue,
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: EdgeInsets.only(left: 5),
                             child: RichText(
                               overflow: TextOverflow.ellipsis,
                               // strutStyle: StrutStyle(fontSize:12.0),
@@ -649,7 +637,28 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
+                    Container(
+                      // width: 100,
+                      alignment: Alignment.topRight,
+                      margin: EdgeInsets.only(top:6,bottom:6),
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 30,
+                        width: 100,
+                        // strutStyle: StrutStyle(fontSize:12.0),
+                        child: Text("\$ " + item.salary,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                        ),
+                      ),
 
+                    ),
                   ],
                 ),
               ),
