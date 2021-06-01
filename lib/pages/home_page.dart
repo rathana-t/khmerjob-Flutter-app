@@ -27,7 +27,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _widthOfScreen = MediaQuery.of(context).size.width;
+    _widthOfScreen = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Scaffold(
       drawer: _buildDrawer,
       appBar: _buildAppBar,
@@ -189,12 +192,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildMenuItem(
-      {String title,
-      IconData icon,
-      Color iconColor,
-      Color titleColor,
-      Function onTap}) {
+  _buildMenuItem({String title,
+    IconData icon,
+    Color iconColor,
+    Color titleColor,
+    Function onTap}) {
     return InkWell(
       onTap: onTap,
       child: ListTile(
@@ -495,7 +497,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: itemList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return _buildItemJob(itemList[index]);
+                return _buildItemJob(itemList[index],index);
               },
             ),
           ),
@@ -505,12 +507,14 @@ class _HomePageState extends State<HomePage> {
   }
 
 // img, title, catogory, location, type, salary
-  _buildItemJob(JobElement item) {
+  _buildItemJob(JobElement item,index) {
     return InkWell(
       onTap: () {
         // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail() ));
       },
       child: Container(
+        color: index.isEven ? Colors.lightBlueAccent.withOpacity(0.1) : Colors.white54.withOpacity(0.1),
+
         width: 150,
         height: 150,
         child: Row(
@@ -531,31 +535,34 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(10),
-                alignment: Alignment.topLeft,
+                padding: EdgeInsets.all(6),
+                alignment: Alignment.center,
                 child: Column(
                   children: [
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      // strutStyle: StrutStyle(fontSize:12.0),
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: RichText(
+                        overflow: TextOverflow.ellipsis,
+                        // strutStyle: StrutStyle(fontSize:12.0),
+                        text: TextSpan(
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 17,
+                          ),
+                          text: item.title,
                         ),
-                        text: item.title,
                       ),
                     ),
                     Container(
                       // width: 100,
                       alignment: Alignment.topRight,
-                      margin: EdgeInsets.all(10),
+                      // margin: EdgeInsets.only(top:6,bottom:6),
                       child: Container(
                         alignment: Alignment.center,
                         height: 30,
                         width: 100,
                         // strutStyle: StrutStyle(fontSize:12.0),
-                        child: Text(item.salary,
+                        child: Text("\$ " + item.salary,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -568,26 +575,78 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                     ),
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      // strutStyle: StrutStyle(fontSize:12.0),
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                        text: item.location,
+                    Container(
+                      margin: EdgeInsets.only(bottom:6),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.category,
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              // strutStyle: StrutStyle(fontSize:12.0),
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16,
+                                ),
+                                text: item.category,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      // strutStyle: StrutStyle(fontSize:12.0),
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                        text: item.typeJob.toString().substring(8),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom:6),
+                      child: Row(
+                        children: [
+                          Icon(
+                              Icons.location_on,
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              // strutStyle: StrutStyle(fontSize:12.0),
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16,
+                                ),
+                                text: item.location,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.category_outlined,
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              // strutStyle: StrutStyle(fontSize:12.0),
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16,
+                                ),
+                                text: item.typeJob.toString().substring(8),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
 
