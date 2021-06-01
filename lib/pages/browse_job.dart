@@ -27,7 +27,7 @@ class _BrowseJobState extends State<BrowseJob> {
   @override
   void initState() {
     super.initState();
-    _jobData = getJobByCategory();
+    _jobData = getJobByCategory(widget.category1);
   }
 
   @override

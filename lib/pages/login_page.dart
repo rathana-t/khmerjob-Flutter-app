@@ -19,11 +19,19 @@ class _LogInPageState extends State<LogInPage> {
     _widthOfScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _keyScaffold,
-      // appBar: _buildAppBar,
+      appBar: _buildAppBar,
       body: _buildBody,
     );
   }
-  get _buildAppBar {
+  get _buildAppBar{
+    return AppBar(
+      backgroundColor: Colors.blueAccent,
+      automaticallyImplyLeading: false,
+      centerTitle: true,
+      title: Text("Welcome"),
+    );
+  }
+  get _buildAppBarr {
     return AppBar(
       // iconTheme: IconThemeData(
       //   color: Colors.black, //change your color here
