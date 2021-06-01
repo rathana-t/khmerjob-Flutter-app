@@ -21,11 +21,11 @@ class _BrowseJobState extends State<BrowseJob> {
   Future<Job> _jobData;
 
 
-  @override
-  void initState() {
-    super.initState();
-    _jobData = getJobByCategory('ds');
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _jobData = getJobByCategory('ds');
+  // }
 
   @override
   Widget build(BuildContext context) {

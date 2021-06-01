@@ -511,7 +511,7 @@ class _HomePageState extends State<HomePage> {
         // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail() ));
       },
       child: Container(
-        // width: 150,
+        width: 150,
         height: 150,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -547,25 +547,26 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Container(
-                      // alignment: Alignment.center,
+                      // width: 100,
+                      alignment: Alignment.topRight,
                       margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(5),
-                      child: RichText(
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 30,
+                        width: 100,
                         // strutStyle: StrutStyle(fontSize:12.0),
-                        text: TextSpan(
+                        child: Text(item.salary,
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                           ),
-                          text: item.salary,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
                         ),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue,
-                      ),
+
                     ),
                     RichText(
                       overflow: TextOverflow.ellipsis,
