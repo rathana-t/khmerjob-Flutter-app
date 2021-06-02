@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:khmerjob_project/models/job_model.dart';
 import 'package:khmerjob_project/models/user_model.dart';
 import 'package:khmerjob_project/pages/browse_job.dart';
+import 'package:khmerjob_project/pages/job_detail_page.dart';
 import 'package:khmerjob_project/pages/login_page.dart';
 import 'package:khmerjob_project/pages/profile_page.dart';
 import 'package:khmerjob_project/repo/job_repo.dart';
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
           _buildMenuItem(
             title: "Home Page",
             icon: Icons.home,
-            iconColor: Colors.red,
+            iconColor: Colors.indigo,
             onTap: () {
               Navigator.of(context).pop();
             },
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
           _buildMenuItem(
             title: "My Account",
             icon: Icons.person,
-            iconColor: Colors.red,
+            iconColor: Colors.indigo,
             onTap: () {
               //   Navigator.of(context).push(
             },
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
           _buildMenuItem(
             title: "My Orders",
             icon: Icons.shopping_basket,
-            iconColor: Colors.red,
+            iconColor: Colors.indigo,
             onTap: () {
               // Navigator.of(context)
               //     .push(MaterialPageRoute(builder: (context) => OrderPage()));
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           _buildMenuItem(
             title: "Category",
             icon: Icons.dashboard,
-            iconColor: Colors.red,
+            iconColor: Colors.indigo,
             onTap: () {
               // Navigator.of(context).push(
               //     MaterialPageRoute(builder: (context) => CategoryMenuPage()));
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
           _buildMenuItem(
             title: "Favorite",
             icon: Icons.favorite,
-            iconColor: Colors.red,
+            iconColor: Colors.indigo,
             onTap: () {
               // Navigator.of(context).push(
               //     MaterialPageRoute(builder: (context) => FavoritePage()));
@@ -187,7 +188,7 @@ class _HomePageState extends State<HomePage> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(50)),
-        color: Colors.red,
+        color: Colors.indigo,
       ),
     );
   }
@@ -473,16 +474,21 @@ class _HomePageState extends State<HomePage> {
     return Container(
       alignment: Alignment.center,
       // color: Colors.lightBlueAccent,
-      padding: EdgeInsets.all(15),
-      margin: EdgeInsets.only(top: 15),
+      padding: EdgeInsets.all(8),
+      // margin: EdgeInsets.only(top: 15),
       child: Column(
         children: <Widget>[
           Container(
+            height: 50,
             margin: EdgeInsets.only(top: 5, bottom: 15),
             alignment: Alignment.center,
             child: Text(
               'Latest Jobs',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20,color: Colors.white),
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.blue,
             ),
           ),
           Container(
@@ -509,9 +515,10 @@ class _HomePageState extends State<HomePage> {
 
 // img, title, catogory, location, type, salary
   _buildItemJob(JobElement item,index) {
+    String Id = item.id;
     return InkWell(
       onTap: () {
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail() ));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetailPage(Id) ));
       },
       child: Container(
         color: index.isEven ? Colors.lightBlueAccent.withOpacity(0.1) : Colors.white54.withOpacity(0.1),

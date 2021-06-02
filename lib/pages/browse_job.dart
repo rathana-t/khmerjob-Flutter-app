@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:khmerjob_project/models/job_model.dart';
 import 'package:khmerjob_project/pages/home_page.dart';
+import 'package:khmerjob_project/pages/job_detail_page.dart';
 import 'package:khmerjob_project/pages/profile_page.dart';
 import 'package:khmerjob_project/repo/job_repo.dart';
 
@@ -97,6 +96,7 @@ class _BrowseJobState extends State<BrowseJob> {
 
   get _buildBody{
     return ListView(
+      physics: BouncingScrollPhysics(),
       children: [
         _buildJobFutureAPI,
       ],
@@ -128,16 +128,21 @@ class _BrowseJobState extends State<BrowseJob> {
     return Container(
       alignment: Alignment.center,
       // color: Colors.lightBlueAccent,
-      padding: EdgeInsets.all(15),
-      margin: EdgeInsets.only(top: 15),
+      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.only(top: 10),
       child: Column(
         children: <Widget>[
           Container(
+            height: 50,
             margin: EdgeInsets.only(top: 5, bottom: 15),
             alignment: Alignment.center,
             child: Text(
-              'Latest Jobs',
-              style: TextStyle(fontSize: 20),
+              'Job in category "' + widget.category1 + '"',
+              style: TextStyle(fontSize: 20,color: Colors.white),
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.blue,
             ),
           ),
           Container(
@@ -164,9 +169,10 @@ class _BrowseJobState extends State<BrowseJob> {
 
 // img, title, catogory, location, type, salary
   _buildItemJob(JobElement item,index) {
+    String IDD = item.id;
     return InkWell(
       onTap: () {
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail() ));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetailPage(IDD) ));
       },
       child: Container(
         color: index.isEven ? Colors.lightBlueAccent.withOpacity(0.1) : Colors.white54.withOpacity(0.1),

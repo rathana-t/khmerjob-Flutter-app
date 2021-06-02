@@ -32,6 +32,19 @@ Future<Job> getJobByCategory(String cate) async{
   }
 }
 
+
+Future<Job> getJobDetail(String id) async{
+  String address = AndroidEmulator;
+  String url = "http://$address/php/khmer_job_app/read_job_detail.php";
+  http.Response response = await http.post(url,body: {'ID':id});
+
+  if(response.statusCode == 200){
+    return compute(jobFromMap, response.body);
+  }else{
+    throw Exception("Error while reading: ${response.statusCode}");
+  }
+}
+
 // Future<ProductData> getProductData() async{
 //   String url = "http://10.0.2.2/php/psha_khmer/read_product.php";
 //   http.Response response = await http.get(url);
